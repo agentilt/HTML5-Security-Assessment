@@ -10,44 +10,89 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Vulnerable Web App</h1>
+    <div class="container">
+        <h1 class="text-center mb-4">Vulnerable Web Application</h1>
 
-    <!-- LocalStorage XSS -->
-    <input id="userInput" placeholder="Enter something..." />
-    <button onclick="saveToStorage()">Save</button>
-    <div id="output"></div>
+        <!-- LocalStorage XSS Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="h5 mb-0">LocalStorage XSS Demonstration</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="userInput">Enter something:</label>
+                    <input type="text" class="form-control" id="userInput" placeholder="Type here...">
+                </div>
+                <button class="btn btn-primary" onclick="saveToStorage()">Save</button>
+                <div class="mt-3">
+                    <strong>Stored Output:</strong>
+                    <div id="output" class="border p-2 mt-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WebSocket Chat Section -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="h5 mb-0">WebSocket Chat (Insecure)</h2>
+            </div>
+            <div class="card-body">
+                <div class="chat-box mb-3" id="chat"></div>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="wsInput" placeholder="Type a message...">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CORS Exploit Section -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="h5 mb-0">Fetch Sensitive Data via CORS</h2>
+            </div>
+            <div class="card-body">
+                <button class="btn btn-danger" onclick="fetchData()">Get Secret Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
+        // LocalStorage XSS Vulnerability
         function saveToStorage() {
-            let input = document.getElementById('userInput').value;
+            const input = document.getElementById('userInput').value;
             localStorage.setItem('data', input);
-            document.getElementById('output').innerHTML = localStorage.getItem('data'); // XSS risk
+            document.getElementById('output').innerHTML = localStorage.getItem('data'); // Vulnerable to XSS
         }
-    </script>
 
-    <!-- WebSocket Chat (No authentication, reflects input) -->
-    <h2>WebSocket Chat</h2>
-    <input id="wsInput" placeholder="Message..." />
-    <button onclick="sendMessage()">Send</button>
-    <div id="chat"></div>
-    <script>
-        let ws = new WebSocket("ws://localhost:8080");
-        ws.onmessage = (event) => {
-            document.getElementById('chat').innerHTML += `<p>${event.data}</p>`;
+        // WebSocket Chat Vulnerability
+        const ws = new WebSocket('ws://localhost:8080');
+        ws.onmessage = function(event) {
+            const chat = document.getElementById('chat');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.innerHTML = `<strong>Received:</strong> ${event.data}`; // Vulnerable to XSS
+            chat.appendChild(messageElement);
+            chat.scrollTop = chat.scrollHeight;
         };
-        function sendMessage() {
-            let msg = document.getElementById('wsInput').value;
-            ws.send(msg);
-        }
-    </script>
 
-    <!-- CORS Exploit -->
-    <h2>Fetch Sensitive Data</h2>
-    <button onclick="fetchData()">Get Secret</button>
-    <script>
+        function sendMessage() {
+            const msg = document.getElementById('wsInput').value;
+            ws.send(msg); // No input validation
+        }
+
+        // CORS Exploit Vulnerability
         function fetchData() {
-            fetch("http://localhost:3000/data", { credentials: "include" })
+            fetch('http://localhost:3000/data', { credentials: 'include' })
                 .then(response => response.json())
-                .then(data => alert("Secret: " + data.secret));
+                .then(data => alert('Secret Data: ' + data.secret))
+                .catch(error => console.error('Error fetching data:', error));
         }
     </script>
 </body>
