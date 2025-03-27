@@ -1,0 +1,19 @@
+body {
+    padding-top: 50px;
+}
+.container {
+    max-width: 800px;
+}
+.chat-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 200px;
+    overflow-y: scroll;
+    background-color: #f8f9fa;
+}
+.message {
+    margin-bottom: 10px;
+}
+.message strong {
+    color: #007bff;
+}
