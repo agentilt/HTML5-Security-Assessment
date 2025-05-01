@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SimpleBank - User Portal</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,6 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
+
                     <input type="email" id="email" placeholder="Enter email">
                 </div>
                 <div class="form-group">
@@ -49,6 +52,7 @@
         <section id="chat-section">
             <h2>Customer Support Chat</h2>
             <div id="chat-messages"></div>
+
             <div class="chat-input">
                 <input type="text" id="message-input" placeholder="Type your message...">
                 <button id="send-message">Send</button>
@@ -60,8 +64,10 @@
         </section>
 
         <!-- API Section with CORS Vulnerability -->
+
         <section id="transaction-section">
             <h2>Recent Transactions</h2>
+
             <button id="load-transactions">Load Transactions</button>
             <div id="transactions-list"></div>
         </section>

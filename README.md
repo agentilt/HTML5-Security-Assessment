@@ -29,5 +29,6 @@ To run all exploits at once, you can use:
 
 runAllExploits()
 
-The console should display detailed output in red text showing what an attacker could access and how they could exploit each vulnerability. For the WebSocket message injection specifically, it will either fill the message input field with a malicious payload or show you what that payload would look like.
-Note that some exploits are simulated rather than actually performing harmful actions (e.g., the hijackUserSession() function is commented out in runAllExploits() to avoid actually modifying your session).RetryClaude can make mistakes. Please double-check responses.
+The console should display detailed output in red text showing what an attacker could access and how they could exploit each vulnerability. 
+For the WebSocket message injection specifically, it will either fill the message input field with a malicious payload or show you what that payload would look like.
+Note that some exploits are simulated rather than actually performing harmful actions (e.g., the hijackUserSession() function is commented out in runAllExploits() to avoid actually modifying session)

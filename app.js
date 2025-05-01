@@ -1,3 +1,5 @@
+
+
 // Wait for DOM to be loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Get references to DOM elements
@@ -7,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const connectChatBtn = document.getElementById('connect-chat');
     const disconnectChatBtn = document.getElementById('disconnect-chat');
+
     const sendMessageBtn = document.getElementById('send-message');
     const messageInput = document.getElementById('message-input');
     const chatMessages = document.getElementById('chat-messages');
@@ -20,17 +23,22 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Save user profile data to localStorage (insecurely)
     saveProfileBtn.addEventListener('click', function() {
+
         const username = document.getElementById('username').value;
         const email = document.getElementById('email').value;
+
         const accountNumber = document.getElementById('account-number').value;
         const balance = document.getElementById('balance').value;
         const pin = document.getElementById('pin').value;
         
         // VULNERABILITY: Storing sensitive data in plain text
         localStorage.setItem('simplebank_username', username);
+
         localStorage.setItem('simplebank_email', email);
+
         localStorage.setItem('simplebank_account', accountNumber);
         localStorage.setItem('simplebank_balance', balance);
+
         localStorage.setItem('simplebank_pin', pin);
         
         // Store authentication token insecurely
@@ -65,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // VULNERABILITY 2: Insecure WebSockets
     // ========================================
     
+
+
+
     let socket = null;
     
     // Connect to WebSocket
@@ -75,6 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Note: This is a simulated connection since there is no actual server
             // In a real demo, you would have a WebSocket server running
             socket = {
+
+
+
                 connected: true,
                 send: function(data) {
                     console.log('WebSocket message sent:', data);
@@ -101,10 +115,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const authData = {
                 type: 'auth',
                 username: localStorage.getItem('simplebank_username'),
+
                 accountNumber: localStorage.getItem('simplebank_account'),
                 token: localStorage.getItem('simplebank_auth_token')
             };
             
+
             socket.send(JSON.stringify(authData));
         } catch (e) {
             addChatMessage('Failed to connect to chat server.', 'system');
@@ -115,6 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Disconnect from WebSocket
     disconnectChatBtn.addEventListener('click', function() {
         if (socket && socket.connected) {
+
+
             socket.close();
             addChatMessage('Disconnected from chat server.', 'system');
             socket = null;
@@ -150,10 +168,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (sender === 'user') {
             messageElement.classList.add('user-message');
             messageElement.textContent = `You: ${message}`;
+
+
         } else if (sender === 'support') {
             messageElement.classList.add('support-message');
             messageElement.textContent = `Support: ${message}`;
-        } else {
+
+        } 
+        else {
             messageElement.classList.add('system-message');
             messageElement.textContent = `System: ${message}`;
         }
@@ -180,6 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const transactions = [
                 { date: '2023-03-15', description: 'Salary Deposit', amount: '+$2,500.00' },
                 { date: '2023-03-14', description: 'Grocery Store', amount: '-$125.65' },
+
+
                 { date: '2023-03-12', description: 'Gas Station', amount: '-$45.30' },
                 { date: '2023-03-10', description: 'Online Shopping', amount: '-$78.99' },
                 { date: '2023-03-05', description: 'Restaurant', amount: '-$65.40' }
@@ -196,12 +220,15 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+
+
         let html = '<div class="transaction-header transaction-item">' +
                   '<div class="transaction-date"><strong>Date</strong></div>' +
                   '<div class="transaction-description"><strong>Description</strong></div>' +
                   '<div class="transaction-amount"><strong>Amount</strong></div>' +
                   '</div>';
         
+
         transactions.forEach(transaction => {
             const amountClass = transaction.amount.startsWith('+') ? 'positive' : 'negative';
             
@@ -215,6 +242,9 @@ document.addEventListener('DOMContentLoaded', function() {
         transactionsList.innerHTML = html;
     }
     
+
+
+
     // Initialize the app by trying to load profile data if available
     if (localStorage.getItem('simplebank_username')) {
         loadProfileBtn.click();
