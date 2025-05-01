@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    border-radius: 5px;
+}
+
+section {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+#profile-result {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.user-message {
+    background-color: #e3f2fd;
+    text-align: right;
+}
+
+.system-message {
+    background-color: #fff3e0;
+    font-style: italic;
+}
+
+.support-message {
+    background-color: #e8f5e9;
+}
+
+.chat-input {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#message-input {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+#transactions-list {
+    margin-top: 15px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-date {
+    width: 30%;
+}
+
+.transaction-description {
+    width: 40%;
+}
+
+.transaction-amount {
+    width: 30%;
+    text-align: right;
+}
+
+.transaction-amount.positive {
+    color: green;
+}
+
+.transaction-amount.negative {
+    color: red;
+}

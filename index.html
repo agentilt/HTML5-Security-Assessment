@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleBank - User Portal</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SimpleBank</h1>
+            <p>Your Online Banking Portal</p>
+        </header>
+
+        <!-- User Profile Section with LocalStorage Vulnerability -->
+        <section id="profile-section">
+            <h2>My Profile</h2>
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+
+                    <input type="email" id="email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="account-number">Account Number:</label>
+                    <input type="text" id="account-number" placeholder="Enter account number">
+                </div>
+                <div class="form-group">
+                    <label for="balance">Current Balance:</label>
+                    <input type="text" id="balance" placeholder="Enter balance" value="$10,000.00" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="pin">PIN:</label>
+                    <input type="password" id="pin" placeholder="Enter PIN">
+                </div>
+                <div class="buttons">
+                    <button type="button" id="save-profile">Save Profile</button>
+                    <button type="button" id="load-profile">Load Profile</button>
+                </div>
+            </form>
+            <div id="profile-result"></div>
+        </section>
+
+        <!-- Chat Section with WebSocket Vulnerability -->
+        <section id="chat-section">
+            <h2>Customer Support Chat</h2>
+            <div id="chat-messages"></div>
+
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Type your message...">
+                <button id="send-message">Send</button>
+            </div>
+            <div class="buttons">
+                <button id="connect-chat">Connect</button>
+                <button id="disconnect-chat">Disconnect</button>
+            </div>
+        </section>
+
+        <!-- API Section with CORS Vulnerability -->
+
+        <section id="transaction-section">
+            <h2>Recent Transactions</h2>
+
+            <button id="load-transactions">Load Transactions</button>
+            <div id="transactions-list"></div>
+        </section>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
