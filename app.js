@@ -1,6 +1,6 @@
-// Wait for DOM to be loaded
+// Waits for DOM to be loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Get references to DOM elements
+    // Gets references to DOM elements
     const saveProfileBtn = document.getElementById('save-profile');
     const loadProfileBtn = document.getElementById('load-profile');
     const profileResult = document.getElementById('profile-result');
@@ -69,13 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 connected: true,
                 send: function(data) {
                     console.log('WebSocket message sent:', data);
-                    // Simulate server response with chat message
+                    // Simulates server response with chat message
                     setTimeout(() => {
                         const message = JSON.parse(data);
                         if (message.type === 'auth') {
                             addChatMessage('Authentication successful! Welcome to SimpleBank support.', 'system');
                         } else if (message.type === 'message') {
-                            // Simulate response from support
+                            // Simulates response from support
                             addChatMessage('Thank you for your message. An agent will respond shortly.', 'support');
                         }
                     }, 1000);
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             addChatMessage('Connected to chat server!', 'system');
             
-            // Send authentication data with user info (vulnerable to CSRF/XSS)
+            //Send authentication data with user info (vulnerable to CSRF/XSS)
             const authData = {
                 type: 'auth',
                 username: localStorage.getItem('simplebank_username'),
@@ -117,13 +117,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const message = messageInput.value.trim();
         
         if (message && socket && socket.connected) {
-            // VULNERABILITY: No input sanitization
+            //No input sanitization
             const messageData = {
                 type: 'message',
                 text: message
             };
             
-            // Inject a malicious payload for XSS demonstration
+            // Injects a malicious payload for XSS demonstration
             if (message.includes("<script>")) {
                 messageData.text = '<img src="x" onerror="alert(\'XSS via WebSocket message!\')">';
             }
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             messageElement.textContent = `System: ${message}`;
         }
 
-        // Add HTML content directly into the message if it's an XSS payload
+
         if (sender === 'user' && message.includes("<img")) {
             messageElement.innerHTML = `You: ${message}`;
         }
